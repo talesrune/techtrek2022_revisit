@@ -4,6 +4,7 @@ import Grid from '@mui/material/Grid'
 import { Box, Button, Typography } from '@mui/material'
 import { DataGrid } from '@mui/x-data-grid';
 import { GridColDef} from '@mui/x-data-grid';
+import axios from 'axios'
 
 const rows = [
 { id: 1, balance: 9000 },
@@ -17,12 +18,35 @@ const columns2: GridColDef[] = [
 { field: 'view', headerName: 'View wallet', width: 150 },
 ];
 
+const ping = async () => {
+    try{
+        const res = await axios({
+            url: 'http://localhost:3000/ping',
+            method:'GET',
+            timeout:20000,
+            // headers:{
+            //     'Content-Type':'application/json',
+            //     'Access-Control-Allow-Headers':'*',
+            //     'Access-Control-Allow-Origin':'*',
+            //     'Access-Control-Allow-Methods':'*'
+            // }
+        })
+        alert(res.data)
+        return res
+
+    } catch(error) {
+        console.error(error)
+    }
+}
 const Dashboard = () => {
   return (
     <div style={{display:'flex'}}>
     <MiniDrawer/>
     <Box sx={{marginTop:'5em', marginLeft:'1em'}}>
         <Grid container spacing={2}>
+        <Grid item xs={12}>
+            <Button onClick={()=>{ping()}}>Ping</Button>
+        </Grid>
         <Grid item xs={12}>
             <Typography>Live update on exchange rates</Typography>
         </Grid>
