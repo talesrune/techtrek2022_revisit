@@ -97,43 +97,54 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 export default function MiniDrawer() {
-  const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
-  const navigate = useNavigate();
+    const theme = useTheme();
+    const [open, setOpen] = React.useState(false);
+    const [count, setCount] = React.useState(0);
+    const navigate = useNavigate();
 
-  const handleDrawerOpen = () => {
+    const handleDrawerOpen = () => {
     setOpen(true);
-  };
+    };
 
-  const handleDrawerClose = () => {
+    const handleDrawerClose = () => {
     setOpen(false);
-  };
+    };
 
-  const renderMainIcon = (index:number) => {
+    const renderMainIcon = (index:number) => {
     switch(index) {
-      case 0:
+        case 0:
         return <HomeIcon />;
-      case 1:
+        case 1:
         return <SwapHorizIcon/>;
-      default:
+        default:
         return <CurrencyExchangeIcon/>;
     }
-  }
-  const renderExitIcon = (index:number) => {
+    }
+    const renderExitIcon = (index:number) => {
     switch(index) {
-      case 0:
+        case 0:
         return <LogoutIcon/>;
-      default:
+        default:
         return <HighlightOffIcon/>;
     }
-  }
+    }
 
-  return (
+    const user = localStorage.getItem('user') ?? '';
+
+    setTimeout(()=>{
+        setCount(prev=>prev+1)
+        if (user === '' && count === 1) {
+            alert('invalid user, please log in')            
+            navigate('/login')
+        }
+    }, 50)
+
+    return (
     <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
-      <AppBar position="fixed" >
+        <CssBaseline />
+        <AppBar position="fixed" >
         <Toolbar>
-          <IconButton
+            <IconButton
             color="inherit"
             aria-label="open drawer"
             onClick={()=>{setOpen(!open)}}
@@ -143,89 +154,91 @@ export default function MiniDrawer() {
             //   marginRight: 5,
             //   ...(open && { display: 'none' }),
             // }}
-          >
+            >
             <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap component="div">
+            </IconButton>
+            <Typography variant="h6" noWrap component="div">
             Simple Bank
-          </Typography>
+            </Typography>
         </Toolbar>
-      </AppBar>
-      <Drawer variant="permanent" open={open} >
+        </AppBar>
+        <Drawer variant="permanent" open={open} >
         <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
+            <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-          </IconButton>
+            </IconButton>
         </DrawerHeader>
         <Divider />
         <List>
-          {['Home', 'Swap', 'Multi Currency wallet'].map((text, index) => (
+            {['Home', 'Swap', 'Multi Currency wallet'].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
+                <ListItemButton
                 sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
+                    minHeight: 48,
+                    justifyContent: open ? 'initial' : 'center',
+                    px: 2.5,
                 }}
                 onClick={()=>{
                     switch(index) {
                         case 0:
-                          return navigate('/')
+                            return navigate('/')
                         case 1:
-                          return navigate('/swap')
+                            return navigate('/swap')
                         default:
-                          return navigate('/mcurrency')
+                            return navigate('/mcurrency')
                     }
                 }}
-              >
+                >
                 <ListItemIcon
-                  sx={{
+                    sx={{
                     minWidth: 0,
                     mr: open ? 3 : 'auto',
                     justifyContent: 'center',
-                  }}
+                    }}
                 >
-                  {renderMainIcon(index)}
+                    {renderMainIcon(index)}
                 </ListItemIcon>
                 <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
+                </ListItemButton>
             </ListItem>
-          ))}
+            ))}
         </List>
         <Divider />
         <List>
-          {['Logout', 'Close Account'].map((text, index) => (
+            {['Logout', 'Close Account'].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
+                <ListItemButton
                 sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
+                    minHeight: 48,
+                    justifyContent: open ? 'initial' : 'center',
+                    px: 2.5,
                 }}
                 onClick={()=>{
                     switch(index) {
-                        case 0:
-                          return navigate('/login')
+                        case 0:{
+                            localStorage.clear()
+                            return navigate('/login')
+                        }
                         default:
-                          return navigate('/closeaccount')
+                            return navigate('/closeaccount')
                     }
                 }}
-              >
+                >
                 <ListItemIcon
-                  sx={{
+                    sx={{
                     minWidth: 0,
                     mr: open ? 3 : 'auto',
                     justifyContent: 'center',
-                  }}
+                    }}
                 >
-                  {renderExitIcon(index)}
+                    {renderExitIcon(index)}
                 </ListItemIcon>
                 <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
+                </ListItemButton>
             </ListItem>
-          ))}
+            ))}
         </List>
-      </Drawer>
+        </Drawer>
     </Box>
-  );
+    );
 }

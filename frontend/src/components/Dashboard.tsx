@@ -24,12 +24,6 @@ const ping = async () => {
             url: 'http://localhost:3000/ping',
             method:'GET',
             timeout:20000,
-            // headers:{
-            //     'Content-Type':'application/json',
-            //     'Access-Control-Allow-Headers':'*',
-            //     'Access-Control-Allow-Origin':'*',
-            //     'Access-Control-Allow-Methods':'*'
-            // }
         })
         alert(res.data)
         return res
@@ -39,14 +33,23 @@ const ping = async () => {
     }
 }
 const Dashboard = () => {
+  const user = localStorage.getItem('user');
+  const userId = user?.split(',')[0]
+  const name = user?.split(',')[1]
+  
+
   return (
     <div style={{display:'flex'}}>
     <MiniDrawer/>
     <Box sx={{marginTop:'5em', marginLeft:'1em'}}>
         <Grid container spacing={2}>
-        <Grid item xs={12}>
-            <Button onClick={()=>{ping()}}>Ping</Button>
+        <Grid item xs={1}>
+            <Typography>Welcome {name}</Typography>
         </Grid>
+        <Grid item xs={1}>
+            <Button variant='contained' onClick={()=>{ping()}}>Ping</Button>
+        </Grid>
+        <Grid item xs={10}/>
         <Grid item xs={12}>
             <Typography>Live update on exchange rates</Typography>
         </Grid>

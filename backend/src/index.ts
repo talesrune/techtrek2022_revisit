@@ -32,3 +32,14 @@ app.get("/getusers", async (req: Request, res: Response) => {
 app.get("/ping", async (req: Request, res: Response) => {
   res.send('backend is working')
 })
+
+app.post("/login", async (req: Request, res: Response) => {
+  const user = await User.findOne( {attributes: ['id', 'name'], where: { username: req.body.username, password: req.body.password} })
+  if (user === null) {
+    console.log('cannot log in')
+    res.send('cannot log in')
+  } else{
+    console.log(user.toJSON())
+    res.send(user)
+  }
+})
