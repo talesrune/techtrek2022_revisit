@@ -3,16 +3,33 @@
 // import viteLogo from '/vite.svg'
 // import './App.css'
 import {Button, Grid, useTheme} from '@mui/material'
+import {BrowserRouter,Router, Route, Routes} from 'react-router-dom'
+import DashBoard from './components/Dashboard';
+import Swap from './components/Swap';
+import MultiCurrency from './components/MultiCurrency';
+import Login from './components/Login';
+import CloseAccount from './components/CloseAccount';
 
-function App() {
+const App = () => {
   // const [count, setCount] = useState(0)
   const theme = useTheme();
   return (
-   
-    <div>
+    // <Button variant='contained'>Hello world</Button>
+    <BrowserRouter>
+    {/* <div> */}
+      
+      <Routes>
+        <Route path='/' element={<DashBoard/>}/>
+        <Route path='/swap' element={<Swap/>}/>
+        <Route path='/mcurrency' element={<MultiCurrency/>}/>
+        <Route path='/login' element={<Login/>}/>
+        <Route path='/closeaccount' element={<CloseAccount/>}/>
 
-      <Button variant='contained'>Hello world</Button>
-    </div>
+      </Routes>
+     
+      
+    {/* </div> */}
+    </BrowserRouter>
     
   )
 }
