@@ -1,2 +1,2 @@
-# trechtrek2022_revisit
+# techtrek2022_revisit
 Recreating a proper user interface using React, MUI, Express, Node, Typescript, MariaDB
