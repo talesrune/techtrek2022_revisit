@@ -30,6 +30,7 @@ const ping = async () => {
         return res
 
     } catch(error) {
+        alert(error)
         console.error(error)
     }
 }
@@ -43,6 +44,7 @@ const getRates = async () => {
         return res
 
     } catch(error) {
+        alert(error)
         console.error(error)
     }
 }
@@ -58,6 +60,7 @@ const getWalletsByUser = async (userId:string) => {
         return res
 
     } catch(error) {
+        alert(error)
         console.error(error)
     }
 }

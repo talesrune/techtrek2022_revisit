@@ -22,6 +22,7 @@ import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
 import LogoutIcon from '@mui/icons-material/Logout';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { useNavigate } from 'react-router-dom';
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 const drawerWidth = 240;
 
@@ -155,9 +156,14 @@ export default function MiniDrawer() {
             >
             <MenuIcon />
             </IconButton>
-            <Typography variant="h6" noWrap component="div">
+            <Typography width='100%' variant="h6" noWrap component="div">
             Simple Bank
             </Typography>
+            <IconButton onClick={()=>{
+              window.location.href = 'https://github.com/talesrune/techtrek2022_revisit'; 
+            }}>
+              <GitHubIcon/>
+            </IconButton>
         </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open} >
@@ -170,6 +176,7 @@ export default function MiniDrawer() {
         <List>
             {['Home', 'Swap', 'Multi Currency wallet'].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
+                
                 <ListItemButton
                 sx={{
                     minHeight: 48,
@@ -206,6 +213,7 @@ export default function MiniDrawer() {
             {['Logout', 'Close Account'].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
                 <ListItemButton
+                disabled={index === 1}
                 sx={{
                     minHeight: 48,
                     justifyContent: open ? 'initial' : 'center',

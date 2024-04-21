@@ -42,6 +42,7 @@ const Login = () => {
             }
     
         } catch(error) {
+            alert(error)
             console.error(error)
         }
     }

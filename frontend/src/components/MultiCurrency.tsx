@@ -26,6 +26,7 @@ const getCurrencyByUser = async (userId:string) => {
       return res
 
   } catch(error) {
+      alert(error)
       console.error(error)
   }
 }
