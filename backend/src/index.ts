@@ -2,7 +2,8 @@ import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
 import User from "./models/userModel";
 import cors from 'cors'
-import exchangeRate from "./models/exchangeRateModel";
+import ExchangeRate from "./models/exchangeRateModel";
+import Wallet from "./models/walletModel";
 
 dotenv.config();
 
@@ -46,13 +47,22 @@ app.post("/login", async (req: Request, res: Response) => {
 })
 
 app.get("/getrates", async (req: Request, res: Response) => {
-  const rate = await exchangeRate.findAll()
-  // console.log(rate.toJSON())
+  const rate = await ExchangeRate.findAll()
   let obj:any = []
   rate.forEach((element:any) => {
     obj.push(element.toJSON())
   });
   // console.log(obj)
   console.log('executed')
+  res.send(obj)
+})
+
+app.post("/getwalletsbyuser", async (req: Request, res: Response) => {
+  const wallet = await Wallet.findAll( {where: { user_id: req.body.user_id} })
+  let obj:any = []
+  wallet.forEach((element:any) => {
+    obj.push(element.toJSON())
+  });
+  console.log('get wallets')
   res.send(obj)
 })

@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
 import sequelize from "../config/sequelizeDb";
-const ExchangeRate = sequelize.define(
-  'exchange_rate',
+const Wallet = sequelize.define(
+  'wallet',
   {
     // Model attributes are defined here
     id: {
@@ -9,23 +9,19 @@ const ExchangeRate = sequelize.define(
       primaryKey:true,
       autoIncremeent:true
     },
-    base_currency: {
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull:false
+    },
+    name: {
       type: DataTypes.STRING,
       allowNull:false
-    },
-    exchange_currency: {
-      type: DataTypes.STRING,
-      allowNull:false
-    },
-    rate: {
-      type: DataTypes.FLOAT,
-      allowNull:false
-    },
+    }
   }, {
     freezeTableName:true,
     timestamps:false
   }
 );
 
-export default ExchangeRate
+export default Wallet
 // `sequelize.define` also returns the model
