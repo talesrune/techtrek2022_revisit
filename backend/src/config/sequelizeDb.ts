@@ -1,12 +1,12 @@
 const { Sequelize } = require('sequelize');
 
 // Option 3: Passing parameters separately (other dialects)
-const sequelize = new Sequelize('multicurrency', 'root', '123', {
+const sequelize = new Sequelize('multicurrency', 'root', 'root', {
     host: 'localhost',
     port: 3306,
-    dialect: 'mariadb',
+    dialect: 'mysql',
     dialectOptions:{
-        connecTimeout:10000,
+        connectTimeout:10000,
         timezone:'+08:00'
     },
     pool:{
