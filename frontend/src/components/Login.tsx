@@ -26,7 +26,7 @@ const Login = () => {
         // console.log('Form submitted', data)
         try{
             const res = await axios({
-                url: 'http://localhost:3000/login',
+                url: 'https://techtrek2022revisit-production.up.railway.app/login', //'http://localhost:3000/login',
                 method:'POST',
                 timeout:20000,
                 data: dataToSend

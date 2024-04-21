@@ -20,7 +20,7 @@ const columns2: GridColDef[] = [
 const ping = async () => {
     try{
         const res = await axios({
-            url: 'http://localhost:3000/ping',
+            url: 'https://techtrek2022revisit-production.up.railway.app/ping', //'http://localhost:3000/ping',
             method:'GET',
             timeout:20000,
         })
