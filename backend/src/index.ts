@@ -4,6 +4,9 @@ import User from "./models/userModel";
 import cors from 'cors'
 import ExchangeRate from "./models/exchangeRateModel";
 import Wallet from "./models/walletModel";
+import Currency from "./models/currencyModel";
+import { QueryTypes } from "sequelize";
+import sequelize from "./config/sequelizeDb";
 
 dotenv.config();
 
@@ -65,4 +68,12 @@ app.post("/getwalletsbyuser", async (req: Request, res: Response) => {
   });
   console.log('get wallets')
   res.send(obj)
+})
+
+app.get("/getcurrencybyuser/:user_id", async (req: Request, res: Response) => {
+  const currency = await sequelize.query(`SELECT currency.id, wallet_id, currency, amount, name FROM currency INNER JOIN wallet ON currency.wallet_id = wallet.id WHERE wallet.user_id = ${req.params.user_id}; `, {
+    type: QueryTypes.SELECT,
+  });
+  console.log('get currencies')
+  res.send(currency)
 })

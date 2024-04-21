@@ -68,10 +68,7 @@ const Dashboard = () => {
   const name = user?.split(',')[1]
 
   const {data:rateRows} = useQuery({ queryKey: ['getrates'], queryFn: getRates })
-  const {data:walletRows} = useQuery({ queryKey: ['getwalletsbyuser'], queryFn: ()=>{return getWalletsByUser(userId)}})
-
-//   console.log(walletRows?.data)
-//   getRates()
+  const {data:walletRows} = useQuery({ queryKey: ['getwalletsbyuser'], queryFn: ()=>{return getWalletsByUser(userId ?? '')}})
 
   return (
     <div style={{display:'flex'}}>
