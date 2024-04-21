@@ -4,18 +4,97 @@ import { Box, Button, Typography } from '@mui/material'
 import { DataGrid } from '@mui/x-data-grid';
 import { GridColDef} from '@mui/x-data-grid';
 import axios from 'axios'
+import {
+    useQuery
+  } from '@tanstack/react-query'
 // import process from 'react-scripts'
 
-const rows = [
+const rows:any = [
 { id: 1, balance: 9000 },
 { id: 2, balance: 68 },
 
 ];
 
+// const rateRows: any = [
+//   {
+//     "id": 1,
+//     "base_currency": "SGD",
+//     "exchange_currency": "CAD",
+//     "rate": 0.9255
+//   },
+//   {
+//     "id": 2,
+//     "base_currency": "SGD",
+//     "exchange_currency": "CNH",
+//     "rate": 4.7868
+//   },
+//   {
+//     "id": 3,
+//     "base_currency": "SGD",
+//     "exchange_currency": "EUR",
+//     "rate": 0.7086
+//   },
+//   {
+//     "id": 4,
+//     "base_currency": "SGD",
+//     "exchange_currency": "HKD",
+//     "rate": 5.583
+//   },
+//   {
+//     "id": 5,
+//     "base_currency": "SGD",
+//     "exchange_currency": "JPY",
+//     "rate": 97.5303
+//   },
+//   {
+//     "id": 6,
+//     "base_currency": "SGD",
+//     "exchange_currency": "NZD",
+//     "rate": 1.1612
+//   },
+//   {
+//     "id": 7,
+//     "base_currency": "SGD",
+//     "exchange_currency": "NOK",
+//     "rate": 7.2912
+//   },
+//   {
+//     "id": 8,
+//     "base_currency": "SGD",
+//     "exchange_currency": "GBP",
+//     "rate": 0.5974
+//   },
+//   {
+//     "id": 9,
+//     "base_currency": "SGD",
+//     "exchange_currency": "SEK",
+//     "rate": 7.5168
+//   },
+//   {
+//     "id": 10,
+//     "base_currency": "SGD",
+//     "exchange_currency": "THB",
+//     "rate": 25.7275
+//   },
+//   {
+//     "id": 11,
+//     "base_currency": "SGD",
+//     "exchange_currency": "USD",
+//     "rate": 0.7113
+//   }
+// ]
+
 const columns2: GridColDef[] = [
 { field: 'id', headerName: 'Wallet number', width: 150 },
 { field: 'balance', headerName: 'Balance', width: 150 },
 { field: 'view', headerName: 'View wallet', width: 150 },
+];
+
+const rateColumns: GridColDef[] = [
+    // { field: 'id', headerName: 'id', width: 150 },
+    { field: 'base_currency', headerName: 'Base Currency', width: 150 },
+    { field: 'exchange_currency', headerName: 'Exchange Currency', width: 150 },
+    { field: 'rate', headerName: 'Rate', width: 150 },
 ];
 
 const ping = async () => {
@@ -32,14 +111,29 @@ const ping = async () => {
         console.error(error)
     }
 }
-//@ts-ignore
-// const nodeEnv = process.env.NODE_ENV;
-// alert(nodeEnv)
+const getRates = async () => {
+    try{
+        const res = await axios({
+            url: import.meta.env.VITE_BACKURL_RATES ?? 'https://techtrek2022revisit-production.up.railway.app/getrates',
+            method:'GET',
+            timeout:20000,
+        })
+        return res
+
+    } catch(error) {
+        console.error(error)
+    }
+}
+
 const Dashboard = () => {
   const user = localStorage.getItem('user');
 //   const userId = user?.split(',')[0]
   const name = user?.split(',')[1]
-  
+
+  const {data:rateRows} = useQuery({ queryKey: ['getrates'], queryFn: getRates })
+
+//   console.log(rateRows?.data)
+//   getRates()
 
   return (
     <div style={{display:'flex'}}>
@@ -54,12 +148,28 @@ const Dashboard = () => {
         </Grid>
         <Grid item xs={10}/>
         <Grid item xs={12}>
-            <Typography>Live update on exchange rates</Typography>
+            <Typography>Current exchange rates</Typography>
         </Grid>
-        <Grid item xs={12}>
-            <Typography variant='h2'>1 SGD = 2.53 MYR</Typography>
+        <Grid item xs={6}>
+        {rateRows && <DataGrid
+            rows={rateRows?.data}
+            columns={rateColumns} //columns
+            initialState={{
+            pagination: {
+                paginationModel: {
+                pageSize: 20,
+                },
+            },
+            }}
+            autoHeight
+            pageSizeOptions={[10,20,50,100]}
+            // checkboxSelection
+            disableRowSelectionOnClick
+        />        
+        }
         </Grid>
-        <Grid item xs={12}>
+        
+        <Grid item xs={6}>
 
             <DataGrid
             rows={rows}

@@ -8,15 +8,28 @@ import Swap from './components/Swap';
 import MultiCurrency from './components/MultiCurrency';
 import Login from './components/Login';
 import CloseAccount from './components/CloseAccount';
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+
+// Create a client
+const queryClient = new QueryClient()
+
 
 const App = () => {
   // const [count, setCount] = useState(0)
   // const theme = useTheme();
   return (
     // <Button variant='contained'>Hello world</Button>
+    <QueryClientProvider client={queryClient}>    
     <BrowserRouter>
     {/* <div> */}
       
+    
       <Routes>
         <Route path='/' element={<DashBoard/>}/>
         <Route path='/swap' element={<Swap/>}/>
@@ -29,6 +42,7 @@ const App = () => {
       
     {/* </div> */}
     </BrowserRouter>
+    </QueryClientProvider>
     
   )
 }

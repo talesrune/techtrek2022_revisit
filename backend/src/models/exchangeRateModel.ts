@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
 import sequelize from "../config/sequelizeDb";
-const User = sequelize.define(
-  'user',
+const exchangeRate = sequelize.define(
+  'exchange_rate',
   {
     // Model attributes are defined here
     id: {
@@ -9,24 +9,23 @@ const User = sequelize.define(
       primaryKey:true,
       autoIncremeent:true
     },
-    username: {
+    base_currency: {
       type: DataTypes.STRING,
       allowNull:false
     },
-    password: {
-        type: DataTypes.STRING,
-        allowNull:false
-      },
-      name: {
-        type: DataTypes.STRING,
-        allowNull:false
-      },
+    exchange_currency: {
+      type: DataTypes.STRING,
+      allowNull:false
+    },
+    rate: {
+      type: DataTypes.FLOAT,
+      allowNull:false
+    },
   }, {
     freezeTableName:true,
     timestamps:false
   }
 );
 
-export default User
+export default exchangeRate
 // `sequelize.define` also returns the model
-// console.log(User === sequelize.models.User); // true

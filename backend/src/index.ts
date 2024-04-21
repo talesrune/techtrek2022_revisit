@@ -2,6 +2,7 @@ import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
 import User from "./models/userModel";
 import cors from 'cors'
+import exchangeRate from "./models/exchangeRateModel";
 
 dotenv.config();
 
@@ -42,4 +43,16 @@ app.post("/login", async (req: Request, res: Response) => {
     console.log(user.toJSON())
     res.send(user)
   }
+})
+
+app.get("/getrates", async (req: Request, res: Response) => {
+  const rate = await exchangeRate.findAll()
+  // console.log(rate.toJSON())
+  let obj:any = []
+  rate.forEach((element:any) => {
+    obj.push(element.toJSON())
+  });
+  // console.log(obj)
+  console.log('executed')
+  res.send(obj)
 })
