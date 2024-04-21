@@ -4,6 +4,7 @@ import { Box, Button, Typography } from '@mui/material'
 import { DataGrid } from '@mui/x-data-grid';
 import { GridColDef} from '@mui/x-data-grid';
 import axios from 'axios'
+// import process from 'react-scripts'
 
 const rows = [
 { id: 1, balance: 9000 },
@@ -20,7 +21,7 @@ const columns2: GridColDef[] = [
 const ping = async () => {
     try{
         const res = await axios({
-            url: 'https://techtrek2022revisit-production.up.railway.app/ping', //'http://localhost:3000/ping',
+            url: import.meta.env.VITE_BACKURL_PING ?? 'https://techtrek2022revisit-production.up.railway.app/ping', //'http://localhost:3000/ping',
             method:'GET',
             timeout:20000,
         })
@@ -31,6 +32,9 @@ const ping = async () => {
         console.error(error)
     }
 }
+//@ts-ignore
+// const nodeEnv = process.env.NODE_ENV;
+// alert(nodeEnv)
 const Dashboard = () => {
   const user = localStorage.getItem('user');
 //   const userId = user?.split(',')[0]

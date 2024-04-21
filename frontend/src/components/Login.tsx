@@ -26,7 +26,7 @@ const Login = () => {
         // console.log('Form submitted', data)
         try{
             const res = await axios({
-                url: 'https://techtrek2022revisit-production.up.railway.app/login', //'http://localhost:3000/login',
+                url: import.meta.env.VITE_BACKURL_LOGIN ?? 'https://techtrek2022revisit-production.up.railway.app/login', //'http://localhost:3000/login',
                 method:'POST',
                 timeout:20000,
                 data: dataToSend
@@ -50,6 +50,7 @@ const Login = () => {
     <div style={{display:'flex'}}>
         <form onSubmit={handleSubmit(onSubmit)}> 
         <Box sx={{marginTop:'5em', marginLeft:'1em'}}>
+            {/* <h1>{import.meta.env.VITE_TITLE}</h1> */}
             <Grid container spacing={2}>
             <Grid item xs={12}>
                 <TextField label='username' {...register('username')}></TextField>

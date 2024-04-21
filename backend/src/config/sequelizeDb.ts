@@ -1,9 +1,12 @@
 const { Sequelize } = require('sequelize');
+import dotenv from "dotenv";
+
+dotenv.config();
 
 // Option 3: Passing parameters separately (other dialects)
-const sequelize = new Sequelize('railway', 'root', 'GgrwaHIfSSskSyNaIhnVTxQbaqyLBJbC', {
-    host: 'monorail.proxy.rlwy.net',
-    port: 31362,
+const sequelize = new Sequelize(process.env.DB ?? 'railway', 'root', process.env.PASS ?? 'randompass', {
+    host: process.env.HOST ?? 'roundhouse.proxy.rlwy.net',
+    port: process.env.DB_PORT ?? 31362,
     dialect: 'mysql',
     dialectOptions:{
         connectTimeout:15000,
