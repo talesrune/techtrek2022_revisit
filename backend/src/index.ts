@@ -17,6 +17,11 @@ app.use(cors())
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 
+console.log(process.env.DB)
+console.log(process.env.PASS)
+console.log(process.env.HOST)
+console.log(process.env.DB_PORT)
+
 app.get("/", (req: Request, res: Response) => {
   res.send("Express + TypeScript Server");
 });

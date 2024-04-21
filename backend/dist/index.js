@@ -26,6 +26,10 @@ const port = process.env.PORT || 3000;
 app.use((0, cors_1.default)());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use(express_1.default.json());
+console.log(process.env.DB);
+console.log(process.env.PASS);
+console.log(process.env.HOST);
+console.log(process.env.DB_PORT);
 app.get("/", (req, res) => {
     res.send("Express + TypeScript Server");
 });
