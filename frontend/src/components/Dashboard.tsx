@@ -1,4 +1,3 @@
-import React from 'react'
 import MiniDrawer from './MiniDrawer'
 import Grid from '@mui/material/Grid'
 import { Box, Button, Typography } from '@mui/material'
@@ -34,7 +33,7 @@ const ping = async () => {
 }
 const Dashboard = () => {
   const user = localStorage.getItem('user');
-  const userId = user?.split(',')[0]
+//   const userId = user?.split(',')[0]
   const name = user?.split(',')[1]
   
 

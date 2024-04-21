@@ -1,9 +1,7 @@
-import React from 'react'
-import MiniDrawer from './MiniDrawer'
 import Grid from '@mui/material/Grid'
-import { Box, Button, TextField, Typography } from '@mui/material'
-import { GridColDef} from '@mui/x-data-grid';
-import {useForm, useFieldArray} from 'react-hook-form' //import the useForm hook
+import { Box, Button, TextField } from '@mui/material'
+// import { GridColDef} from '@mui/x-data-grid';
+import {useForm} from 'react-hook-form' //import the useForm hook
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -21,8 +19,8 @@ const Login = () => {
             password:''
         }
     })
-    const {register,control, handleSubmit, formState} = form //bring out the object properties from useForm hook
-    const {errors} = formState
+    const {register, handleSubmit} = form //bring out the object properties from useForm hook
+    // const {errors} = formState
 
     const onSubmit = async (dataToSend: FormValues) => {
         // console.log('Form submitted', data)

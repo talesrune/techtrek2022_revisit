@@ -1,9 +1,6 @@
-import React from 'react'
 import MiniDrawer from './MiniDrawer'
 import Grid from '@mui/material/Grid'
 import { Box, Button, Typography } from '@mui/material'
-import { DataGrid } from '@mui/x-data-grid';
-import { GridColDef} from '@mui/x-data-grid';
 
 const CloseAccount = () => {
   return (

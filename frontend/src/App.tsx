@@ -2,8 +2,7 @@
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 // import './App.css'
-import {Button, Grid, useTheme} from '@mui/material'
-import {BrowserRouter,Router, Route, Routes} from 'react-router-dom'
+import {BrowserRouter,Route, Routes} from 'react-router-dom'
 import DashBoard from './components/Dashboard';
 import Swap from './components/Swap';
 import MultiCurrency from './components/MultiCurrency';
@@ -12,7 +11,7 @@ import CloseAccount from './components/CloseAccount';
 
 const App = () => {
   // const [count, setCount] = useState(0)
-  const theme = useTheme();
+  // const theme = useTheme();
   return (
     // <Button variant='contained'>Hello world</Button>
     <BrowserRouter>

@@ -16,8 +16,6 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import HomeIcon from '@mui/icons-material/Home';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
@@ -102,9 +100,9 @@ export default function MiniDrawer() {
     const [count, setCount] = React.useState(0);
     const navigate = useNavigate();
 
-    const handleDrawerOpen = () => {
-    setOpen(true);
-    };
+    // const handleDrawerOpen = () => {
+    // setOpen(true);
+    // };
 
     const handleDrawerClose = () => {
     setOpen(false);
