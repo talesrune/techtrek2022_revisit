@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelizeDb_1 = __importDefault(require("../config/sequelizeDb"));
-const User = sequelizeDb_1.default.define('User', {
+const User = sequelizeDb_1.default.define('user', {
     // Model attributes are defined here
     id: {
         type: DataTypes.INTEGER,

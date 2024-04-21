@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
 import sequelize from "../config/sequelizeDb";
 const User = sequelize.define(
-  'User',
+  'user',
   {
     // Model attributes are defined here
     id: {

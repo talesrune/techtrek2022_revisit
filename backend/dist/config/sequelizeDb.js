@@ -2,12 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const { Sequelize } = require('sequelize');
 // Option 3: Passing parameters separately (other dialects)
-const sequelize = new Sequelize('multicurrency', 'root', 'root', {
-    host: 'localhost',
-    port: 3306,
+const sequelize = new Sequelize('railway', 'root', 'GgrwaHIfSSskSyNaIhnVTxQbaqyLBJbC', {
+    host: 'monorail.proxy.rlwy.net',
+    port: 31362,
     dialect: 'mysql',
     dialectOptions: {
-        connectTimeout: 10000,
+        connectTimeout: 15000,
         timezone: '+08:00'
     },
     pool: {

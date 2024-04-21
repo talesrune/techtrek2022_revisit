@@ -26,7 +26,7 @@ app.get("/", (req, res) => {
     res.send("Express + TypeScript Server");
 });
 app.listen(port, () => {
-    console.log(`[server]: Server is running at http://localhost:${port}`);
+    console.log(`[server]: Server is running at ${port}`);
 });
 app.get("/getusers", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const user = yield userModel_1.default.findAll();
