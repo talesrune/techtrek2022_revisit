@@ -4,9 +4,9 @@ import dotenv from "dotenv";
 dotenv.config();
 
 // Option 3: Passing parameters separately (other dialects)
-const sequelize = new Sequelize(process.env.DB ?? 'railway', 'root', process.env.PASS ?? 'randompass', {
-    host: process.env.HOST ?? 'roundhouse.proxy.rlwy.net',
-    port: process.env.DB_PORT ?? 31362,
+const sequelize = new Sequelize(process.env.DB, 'root', process.env.PASS, {
+    host: process.env.HOST, //roundhouse.proxy.rlwy.net
+    port: process.env.DB_PORT, //35513
     dialect: 'mysql',
     dialectOptions:{
         connectTimeout:15000,

@@ -60,6 +60,11 @@ const Login = () => {
             </Grid>
             <Grid item xs={12}>
                 <Button type='submit'>Login</Button>
+                <Button onClick={()=>{
+                    localStorage.setItem('user', '1,Jacky')
+                    navigate('/')
+                }}>Skip login</Button>
+                
             </Grid>
             </Grid>
         </Box>
