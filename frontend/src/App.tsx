@@ -9,9 +9,6 @@ import MultiCurrency from './components/MultiCurrency';
 import Login from './components/Login';
 import CloseAccount from './components/CloseAccount';
 import {
-  useQuery,
-  useMutation,
-  useQueryClient,
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'

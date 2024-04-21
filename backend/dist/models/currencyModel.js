@@ -3,31 +3,30 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const { Sequelize, DataTypes } = require('sequelize');
+const { DataTypes } = require('sequelize');
 const sequelizeDb_1 = __importDefault(require("../config/sequelizeDb"));
-const User = sequelizeDb_1.default.define('user', {
+const Currency = sequelizeDb_1.default.define('currency', {
     // Model attributes are defined here
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncremeent: true
     },
-    username: {
+    wallet_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    currency: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    password: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    name: {
-        type: DataTypes.STRING,
+    amount: {
+        type: DataTypes.FLOAT,
         allowNull: false
     },
 }, {
     freezeTableName: true,
     timestamps: false
 });
-exports.default = User;
+exports.default = Currency;
 // `sequelize.define` also returns the model
-// console.log(User === sequelize.models.User); // true

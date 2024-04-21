@@ -16,6 +16,10 @@ const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const userModel_1 = __importDefault(require("./models/userModel"));
 const cors_1 = __importDefault(require("cors"));
+const exchangeRateModel_1 = __importDefault(require("./models/exchangeRateModel"));
+const walletModel_1 = __importDefault(require("./models/walletModel"));
+const sequelize_1 = require("sequelize");
+const sequelizeDb_1 = __importDefault(require("./config/sequelizeDb"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = process.env.PORT || 3000;
@@ -49,4 +53,30 @@ app.post("/login", (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         console.log(user.toJSON());
         res.send(user);
     }
+}));
+app.get("/getrates", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const rate = yield exchangeRateModel_1.default.findAll();
+    let obj = [];
+    rate.forEach((element) => {
+        obj.push(element.toJSON());
+    });
+    // console.log(obj)
+    console.log('executed');
+    res.send(obj);
+}));
+app.post("/getwalletsbyuser", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const wallet = yield walletModel_1.default.findAll({ where: { user_id: req.body.user_id } });
+    let obj = [];
+    wallet.forEach((element) => {
+        obj.push(element.toJSON());
+    });
+    console.log('get wallets');
+    res.send(obj);
+}));
+app.get("/getcurrencybyuser/:user_id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const currency = yield sequelizeDb_1.default.query(`SELECT currency.id, wallet_id, currency, amount, name FROM currency INNER JOIN wallet ON currency.wallet_id = wallet.id WHERE wallet.user_id = ${req.params.user_id}; `, {
+        type: sequelize_1.QueryTypes.SELECT,
+    });
+    console.log('get currencies');
+    res.send(currency);
 }));
