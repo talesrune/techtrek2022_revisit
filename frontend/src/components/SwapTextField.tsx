@@ -1,20 +1,8 @@
-import MiniDrawer from './MiniDrawer'
 import Grid from '@mui/material/Grid'
-import { Box, Button, NativeSelect, Paper, TextField, Typography, TextFieldProps, inputBaseClasses } from '@mui/material'
+import { NativeSelect, Paper, TextField, Typography, TextFieldProps, inputBaseClasses } from '@mui/material'
 import { useState } from 'react'
 import { yellow } from "@mui/material/colors";
 
-const InputLabelProps: TextFieldProps["InputLabelProps"] = {
-  shrink: true,
-  sx: {
-    color: "text.primary",
-    transform: "translate(0, 1.5px) scale(0.8)",
-    letterSpacing: 1,
-    "&.Mui-focused:not(.Mui-error)": {
-      color: "text.primary",
-    },
-  },
-};
 const InputProps: TextFieldProps["InputProps"] = {
   disableUnderline: true,
   sx: {
@@ -45,7 +33,7 @@ const InputProps: TextFieldProps["InputProps"] = {
 const SwapTextField = ({label, base, exchange}:{label: string, base:Set<string>, exchange:Set<string>}) => {
   // const curList = ['SGD','USD']
   const [from, setFrom] = useState<string>('')
-  const [to, setTo] = useState<string>('')
+  // const [to, setTo] = useState<string>('')
 
   const cur1 = Array.from(base.values());
   const cur2 = Array.from(exchange.values());

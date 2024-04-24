@@ -1,8 +1,7 @@
 import MiniDrawer from './MiniDrawer'
 import Grid from '@mui/material/Grid'
-import { Box, Button, NativeSelect, Paper, TextField, Typography, TextFieldProps, inputBaseClasses, Toolbar } from '@mui/material'
-import { useState } from 'react'
-import { yellow } from "@mui/material/colors";
+import { Box, Button, Paper, Typography, Toolbar } from '@mui/material'
+// import { yellow } from "@mui/material/colors";
 import SwapTextField from './SwapTextField';
 import axios from 'axios'
 import {
@@ -25,8 +24,8 @@ const getRates = async () => {
 }
 
 const Swap = () => {
-  const [from, setFrom] = useState<string>('')
-  const [to, setTo] = useState<string>('')
+  // const [from, setFrom] = useState<string>('')
+  // const [to, setTo] = useState<string>('')
   // const hello = 'world'
 
   const {data:rateData} = useQuery({ queryKey: ['getrates'], queryFn: getRates })
